@@ -10,6 +10,7 @@ Basic blog structure is set up.
 
 I'm primarily going to be posting about incremental games and/or scripts to use
 with them.  There are a few things I still need to fine tune.
+<!-- more -->
 
 - Decide on finalized theme colors.  I don't dislike the current but might
   change it still.
