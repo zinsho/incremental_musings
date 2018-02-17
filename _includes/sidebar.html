@@ -24,7 +24,8 @@
       {% if nav[0] == 'Scripts' %}
         {% assign scripts = site.pages | where:"layout","scriptnav" %}
         {% for script in scripts %}
-      <a class="sidebar-nav-item sidebar-nav-item-sub {% if page.url == script.url %}active{% endif %}" href="{{ script.url}}">{{script.title}}</a>
+          {% assign script_url = script.url | prepend: site.baseurl %}
+      <a class="sidebar-nav-item sidebar-nav-item-sub {% if page.url == script.url %}active{% endif %}" href="{{ script_url }}">{{script.title}}</a>
         {% endfor %}
       {% else %}
       {% for i in (1..sub_len) %}
