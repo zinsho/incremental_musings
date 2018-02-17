@@ -61,8 +61,8 @@ nav:
 tag_page: '/blog/tags/'
 category_page: '/blog/categories'
 
-
-theme: jekyll-theme-lanyon
+remote_theme: poole/lanyon
+# theme: jekyll-theme-lanyon
 plugins:
   - jekyll-feed
   - jekyll-paginate
