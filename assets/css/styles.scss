@@ -1,0 +1,15 @@
+---
+---
+
+@import "poole";
+@import "syntax";
+@import "lanyon";
+
+.sidebar-nav-item-sub {
+    &:before {
+	content: "";
+	padding-left: 1em;
+    }
+    font-size: 85%;
+    line-height: 85%;
+}

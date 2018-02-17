@@ -1,0 +1,9 @@
+_site
+.sass-cache
+.jekyll-metadata
+
+# Emacs backups
+*~
+
+# Folders to ignore
+node_modules

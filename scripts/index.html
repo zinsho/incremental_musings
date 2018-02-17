@@ -1,0 +1,20 @@
+---
+layout: navpage
+title: Scripts
+permalink: /scripts/
+---
+
+
+<div class="tags-expo">
+  <div class="tags-expo-list">
+    {% assign script_categories = site.pages | where:"layout","scriptnav" %}
+    {% for category in script_categories %}
+    <div>
+      <h2 id="{{ category.title | slugify }}"><a href="{{category.url}}">{{ category.title }}</a></h2>
+      <div class="tags-expo-posts">
+	{{ category.description }}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

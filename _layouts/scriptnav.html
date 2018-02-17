@@ -1,0 +1,28 @@
+---
+layout: page
+---
+
+<div class="sript-category-header">
+{{content}}
+</div>
+<div class="tags-expo">
+  <div class="tags-expo-section">
+    <ul class="tags-expo-posts">
+      {% assign scripts = site.posts | where:"layout","scriptpost" | where:"category", page.category %}
+      {% for post in scripts %}
+      <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
+	<li>
+	  {{ post.title }}
+	</li>
+      </a>
+      {% endfor %}
+    </ul>
+
+  </div>
+</div>
+
+<div class="script-category-footer">
+{% if page.game %}
+See: <a href="{{ page.game.url }}">{{ page.game.name }}</a>
+{% endif %}
+</div>

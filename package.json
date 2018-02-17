@@ -1,0 +1,25 @@
+{
+  "name": "incremental_musings",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zinsho/incremental_musings.git"
+  },
+  "author": "Zinsho Lexagen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zinsho/incremental_musings/issues"
+  },
+  "homepage": "https://github.com/zinsho/incremental_musings#readme",
+  "devDependencies": {
+    "browser-sync": "^2.23.6",
+    "gulp": "^3.9.1",
+    "gulp-shell": "^0.6.5",
+    "lodash": "^4.17.5"
+  }
+}
