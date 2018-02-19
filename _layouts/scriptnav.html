@@ -8,13 +8,18 @@ layout: page
 <div class="tags-expo">
   <div class="tags-expo-section">
     <ul class="tags-expo-posts">
-      {% assign scripts = site.posts | where:"layout","scriptpost" | where:"category", page.category %}
+      {% assign scripts = site.posts | where:"layout","scriptpost" %}
+
       {% for post in scripts %}
+      {% for category in post.categories %}
+      {% if page.category == category %}
       <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
 	<li>
 	  {{ post.title }}
 	</li>
       </a>
+      {% endif %}
+      {% endfor%}
       {% endfor %}
     </ul>
 
