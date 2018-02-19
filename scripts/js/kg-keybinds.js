@@ -112,4 +112,4 @@ function callKeybind(event) {
     }
 }
 
-window.addEventListener('keyup', event => callKeybind(event))
+window.addEventListener('keyup', callKeybind)
