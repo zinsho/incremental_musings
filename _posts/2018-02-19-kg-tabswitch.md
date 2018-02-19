@@ -1,10 +1,11 @@
 ---
-title: KittensGame TabSwitch keybindings
+title: KittensGame Keybindings
 layout: scriptpost
 date: 2018-02-19 12:00:00 -0500
+updated: 2018-02-19 13:00:00 -0500
 tags: kittensgame scripts js
 categories: scripts kittensgame
-script_link: /js/kg-tabswitch.js
+script_link: /js/kg-keybinds.js
 ---
 
 When playing KittensGame I frequently find myself having to switch game tabs
