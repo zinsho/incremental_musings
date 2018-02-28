@@ -1,14 +1,15 @@
 <html>
   <body>
-    <script type="text/javascript">
-      var l = window.location
-      var data = document.getElementById('data')
-      var code = l.search.split('=')[1]
-      data.textContent = code
-      
-    </script>
     <div >
       <span id="data"></span>
     </div>
   </body>
+  <footer>
+    <script type="text/javascript">
+      var l = window.location
+      var code = l.search.split('=')[1]
+      document.getElementById('data').textContent = code
+      
+    </script>
+  </footer>
 </html>
