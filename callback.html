@@ -1,5 +1,14 @@
 <html>
-<body>
-Test
-</body>
+  <body>
+    <script type="text/javascript">
+      var l = window.location
+      var data = document.getElementById('data')
+      var code = l.search.split('=')[1]
+      data.textContent = code
+      
+    </script>
+    <div >
+      <span id="data"></span>
+    </div>
+  </body>
 </html>
