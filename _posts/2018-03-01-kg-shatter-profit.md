@@ -8,7 +8,7 @@ script_link: /js/kg-shatterProfits.js
 ---
 
 As mentioned in my [previous post]({{site.baseurl}}{% post_url
-2018-02-28-kg-intelligentshatter.md %), calculating shattering
+2018-02-28-kg-intelligentshatter %}), calculating shattering
 profitability is a separate process from implementing the shatter
 engine itself.  They can be paired together to ensure the engine is
 running when profitable and stops if you would run out of TC due to
