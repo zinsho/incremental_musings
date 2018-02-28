@@ -29,7 +29,7 @@ function run () {
 }
 
 function start () {
-    if (typeof gamePage != 'undefined) {
+    if (typeof gamePage != 'undefined') {
         run()
     } else {
         // Try every second to initialize
