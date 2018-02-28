@@ -7,11 +7,12 @@ categories: scripts kittensgame
 script_link: /js/kg-shatterProfits.js
 ---
 
-As mentioned in my [previous post][intellishatter], calculating
-shattering profitability is a separate process from implementing the
-shatter engine itself.  They can be paired together to ensure the
-engine is running when profitable and stops if you would run out of TC
-due to the **Cycle** or **Dark Future**.
+As mentioned in my [previous
+post](./2018-02-28-kg-intelligentshatter.md), calculating shattering
+profitability is a separate process from implementing the shatter
+engine itself.  They can be paired together to ensure the engine is
+running when profitable and stops if you would run out of TC due to
+the **Cycle** or **Dark Future**.
 
 ### Unobtainium per Shatter
 
@@ -109,4 +110,3 @@ function getTCProfitability() {
 
 Positive values given by `getTCProfitability()` mean profit, negative
 values are the cost in TC every time you shatter.
-[intellishatter]: ./2018-02-28-kg-intelligentshatter.md
