@@ -1,7 +1,7 @@
 ---
 title: Calculating Shatter Profitability
 layout: scriptpost
-date: 2018-02-28 11:00:00 -0500
+date: 2018-03-01 07:00:00 -0500
 tags: kittensgame scripts js
 categories: scripts kittensgame
 script_link: /js/kg-shatterProfits.js

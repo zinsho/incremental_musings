@@ -26,6 +26,7 @@ github_username:  zinsho
 disqus_short_name: incremental-musings
 
 # Build settings
+future: false
 markdown: kramdown
 kramdown:
   input: GFM
