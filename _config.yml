@@ -23,6 +23,8 @@ url: "https://zinsho.github.com" # the base hostname & protocol for your site, e
 twitter_username: zinsho
 github_username:  zinsho
 
+disqus_short_name: incremental-musings
+
 # Build settings
 markdown: kramdown
 kramdown:
@@ -63,6 +65,13 @@ plugins:
   - jekyll-paginate
   - jekyll-relative-links
 
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      comments: true
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
