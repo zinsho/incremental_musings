@@ -24,6 +24,7 @@ twitter_username: zinsho
 github_username:  zinsho
 
 # Build settings
+future: false
 markdown: kramdown
 kramdown:
   input: GFM
