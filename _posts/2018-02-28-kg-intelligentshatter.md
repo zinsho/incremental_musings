@@ -64,10 +64,12 @@ there is no guarantee that will not be changed.
 ```js
 function createShatterWidget () {
     var shatterWidget = new classes.ui.ChronoforgeWgt(game),
-        shatterButton = shatterWidget.children.find(x => x.opts.name === 'Combust TC');
+        shatterButton = shatterWidget.children.find(
+            button => button.opts.name === 'Combust TC'
+        );
 
     shatterButton.model = Object.assign({},shatterButton.opts);
-    shatterButton.model.options = Object.assign({},shatterButton.opts);
+    shatterButton.model.options = Object.assign({},shatterButton.opts)
     shatterButton.model.enabled = true;
     return shatterButton
 }
@@ -86,7 +88,9 @@ engine, the callback and event aren't needed, only the model and quantity.
 var counter = 1;
 function shatterTCTime () {
     if (counter % getTimePer10Heat() == 0) {
-        shatterButton.controller.doShatterAmt(shatterButton.model, false, () => { }, 1)
+        shatterButton.controller.doShatterAmt(
+            shatterButton.model, false, () => { }, 1
+        )
         counter = 1
     } else {
         counter++
@@ -110,7 +114,9 @@ game.religionTab.render()
 var alicornButton = game.religionTab.sacrificeAlicornsBtn
 
 function sacrificeAlicorns () {
-    alicornButton.controller.sacrificeAll(alicornButton.model, false, () => { })
+    alicornButton.controller.sacrificeAll(
+        alicornButton.model, false, () => { }
+    )
 }
 ```
 
@@ -126,7 +132,9 @@ there are resources available.
 
 ```js
 function tradeLeviathans () {
-    var leviRace = game.diplomacy.races.find(race => race.name === 'leviathans')
+    var leviRace = game.diplomacy.races.find(
+        race => race.name === 'leviathans'
+    )
     game.diplomacy.tradeAll(leviRace)
 }
 ```

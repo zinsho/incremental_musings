@@ -10,10 +10,12 @@ function getTimePer10Heat() {
 
 function createShatterWidget () {
     var shatterWidget = new classes.ui.ChronoforgeWgt(game),
-        shatterButton = shatterWidget.children.find(x => x.opts.name === 'Combust TC');
+        shatterButton = shatterWidget.children.find(
+            button => button.opts.name === 'Combust TC'
+        );
 
     shatterButton.model = Object.assign({},shatterButton.opts);
-    shatterButton.model.options = Object.assign({},shatterButton.opts);
+    shatterButton.model.options = Object.assign({},shatterButton.opts)
     shatterButton.model.enabled = true;
     return shatterButton
 }
@@ -23,7 +25,9 @@ var shatterButton = createShatterWidget()
 var counter = 1 // Start at 1 for increment
 function shatterTCTime () {
     if (counter % getTimePer10Heat() == 0) {
-        shatterButton.controller.doShatterAmt(shatterButton.model, false, () => { }, 1)
+        shatterButton.controller.doShatterAmt(
+            shatterButton.model, false, () => { }, 1
+        )
         counter = 1
     } else {
         counter++
@@ -36,12 +40,16 @@ game.religionTab.render()
 var alicornButton = game.religionTab.sacrificeAlicornsBtn
 
 function sacrificeAlicorns () {
-    alicornButton.controller.sacrificeAll(alicornButton.model, false, () => { })
+    alicornButton.controller.sacrificeAll(
+        alicornButton.model, false, () => { }
+    )
 }
 
 // ** Leviathans
 function tradeLeviathans () {
-    var leviRace = game.diplomacy.races.find(race => race.name === 'leviathans')
+    var leviRace = game.diplomacy.races.find(
+        race => race.name === 'leviathans'
+    )
     game.diplomacy.tradeAll(leviRace)
 }
 
