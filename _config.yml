@@ -61,6 +61,8 @@ remote_theme: poole/lanyon
 plugins:
   - jekyll-feed
   - jekyll-paginate
+  - jekyll-relative-links
+
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
