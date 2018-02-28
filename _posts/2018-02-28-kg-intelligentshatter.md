@@ -40,7 +40,9 @@ var shatterPerTick = false;
 var shatterPadding = 0; // Addition seconds to delay shatter
 
 function getTimePer10Heat() {
-    return Math.ceil(Math.abs(10 / ((shatterPerTick ? 1 : 5) *
+    var heat = game.challenges.getChallenge('1000Years').researched,
+        heat = heat ? 5 : 10
+    return Math.ceil(Math.abs(heat / ((shatterPerTick ? 1 : 5) *
                                     game.getEffect('heatPerTick')))) +
         (shatterPadding * (shatterPerTick ? 5 : 1))
 }
