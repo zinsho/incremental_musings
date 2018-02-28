@@ -37,7 +37,7 @@ boost if there is a reason.
 // levels to optimize even further
 var shatterPerTick = false;
 
-var shatterPadding = 0; // Addition seconds to delay shatter if desired
+var shatterPadding = 0; // Addition seconds to delay shatter
 
 function getTimePer10Heat() {
     return Math.ceil(Math.abs(10 / ((shatterPerTick ? 1 : 5) *

@@ -1,6 +1,6 @@
 // ** Crystal Shattering
 var shatterPerTick = false
-var shatterPadding = 0 // Add extra seconds to give leeway before combusting (if reason to do so)
+var shatterPadding = 0 // Additional seconds to delay shatter
 
 function getTimePer10Heat() {
     return Math.ceil(Math.abs(10 / ((shatterPerTick ? 1 : 5) *
