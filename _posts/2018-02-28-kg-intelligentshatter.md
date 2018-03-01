@@ -156,7 +156,7 @@ function automateShatter () {
 
 if (gamePage.resPool.get('timeCrystal').unlocked) {
     var shatterInterval = setInterval(automateShatter,
-                                      shatterPerTick ? 250 : 1000)
+                                      shatterPerTick ? 200 : 1000)
 } else {
     console.log("Time Crystals not available")
 }
