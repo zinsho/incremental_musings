@@ -1,11 +1,29 @@
+var shatterPerTick = false
+var shatterPadding = 0 // Additional seconds to delay shatter
+
+function getTimePer10Heat() {
+    var heat = game.challenges.getChallenge('1000Years').researched,
+        heat = heat ? 5 : 10
+    return Math.ceil(Math.abs(heat / ((shatterPerTick ? 1 : 5) *
+                                    game.getEffect('heatPerTick')))) +
+        (shatterPadding * (shatterPerTick ? 5 : 1))
+}
+
+function createShatterWidget () {
+    var shatterWidget = new classes.ui.ChronoforgeWgt(game),
+        shatterButton = shatterWidget.children.find(
+            button => button.opts.name === 'Combust TC'
+        );
+
+    shatterButton.model = Object.assign({},shatterButton.opts);
+    shatterButton.model.options = Object.assign({},shatterButton.opts)
+    shatterButton.model.enabled = true;
+    return shatterButton
+}
+
+var shatterButton = createShatterWidget()
+
 function getTCProfitability() {
-    // Use shatterButton from intellishatter if present rather than
-    // risk possible UI changes
-    if (typeof shatterButton == 'undefined') {
-        game.timeTab.render()
-        var shatterButton = game.timeTab.cfPanel.children.map(
-            x => x.children.find(x => x.model.name === 'Combust TC'))[0]
-    }
     var inTC = getTCPerShatter(),
         outTC = shatterButton.controller
             .getPrices(shatterButton.model)
@@ -15,11 +33,12 @@ function getTCProfitability() {
 
 function getTCPerShatter() {
     var rr = game.getEffect('shatterTCGain') *
-        (1 + game.getEffect('rrRatio'))
+        (1 + game.getEffect('rrRatio')),
+        delay = getTimePer10Heat()
 
-    var unobt = getUnobtPerShatter(rr),
+    var unobt = getUnobtPerShatter(rr, delay),
         tcPerUnobt = getTCPerTrade() / 5000,
-        ali = getAlicornPerShatter(rr),
+        ali = getAlicornPerShatter(rr, delay),
         tcPerAli = (1 + game.getEffect('tcRefineRatio')) / 25,
         heatChallenge = game.challenges.getChallenge("1000Years").researched,
         furnaceBoost = (heatChallenge ? 5 : 10) / 100
@@ -27,21 +46,25 @@ function getTCPerShatter() {
     return (unobt * tcPerUnobt + ali * tcPerAli) * (1 + furnaceBoost)
 }
 
-function getUnobtPerShatter(ratio) {
+function getUnobtPerShatter(ratio, delay) {
     var n = 'unobtainium',
         unobt = game.resPool.get(n),
-        unYr = game.getResourcePerTick(n) * 5 * 800,
-        unShatter = unYr * ratio
+        unProd = game.getResourcePerTick(n) * 5 * (game.time.isAccelerated ? 1.5 : 1),
+        unYr = unProd * 800,
+        unIdle = unProd * (shatterPerTick ? delay/5 : delay)
+        unShatter = unYr * ratio + unIdle
 
     // return per shatter or max
     return Math.min(unShatter, unobt.maxValue)
 }
 
-function getAlicornPerShatter(ratio) {
+function getAlicornPerShatter(ratio, delay) {
     var n = 'alicorn',
-        aliYr = game.getResourcePerTick(n) * 5 * 800
+        aliProd = game.getResourcePerTick(n) * 5 * (game.time.isAccelerated ? 1.5 : 1),
+        aliYr = aliProd * 800,
+        aliIdle = aliProd * (shatterPerTick ? delay/5 : delay)
 
-    return aliYr * ratio
+    return aliYr * ratio + aliIdle
 }
 
 function getTCPerTrade() {
@@ -51,7 +74,7 @@ function getTCPerTrade() {
     var ratio = game.diplomacy.getTradeRatio(),
         tc = leviRace.sells.find(
             res => res.name === 'timeCrystal'),
-        amt = tc.value - (tc.value * (tc.delta / 2))
+        amt = (tc.value - (tc.value * (tc.delta / 2))) * tc.chance/100
 
     return amt * (1 + ratio) * (1 + (0.02 * leviRace.energy))
 }
