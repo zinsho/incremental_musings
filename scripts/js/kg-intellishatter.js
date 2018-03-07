@@ -16,16 +16,18 @@ function createShatterWidget () {
             button => button.opts.name === 'Combust TC'
         );
 
-    shatterButton.model = Object.assign({},shatterButton.opts);
-    shatterButton.model.options = Object.assign({},shatterButton.opts)
-    shatterButton.model.enabled = true;
+    shatterWidget.render()
     return shatterButton
 }
 
 var shatterButton = createShatterWidget()
 
+var slowRedmoon = true
 var counter = 1 // Start at 1 for increment
 function shatterTCTime () {
+    if (slowRedmoon && game.calendar.cycle == 5) {
+        return
+    }
     if (counter % getTimePer10Heat() == 0) {
         shatterButton.controller.doShatterAmt(
             shatterButton.model, false, () => { }, 1
@@ -39,11 +41,23 @@ function shatterTCTime () {
 // ** Alicorns
 // Load religion buttons into memory
 game.religionTab.render()
-var alicornButton = game.religionTab.sacrificeAlicornsBtn
+var model = Object.assign({}, game.religionTab.sacrificeAlicornsBtn.model)
+
+var alicornButton = new classes.ui.religion.SacrificeBtn(
+    {
+        controller: new classes.ui.religion.SacrificeAlicornsBtnController(
+            game
+        ),
+        prices: model.prices},
+    game
+)
 
 function sacrificeAlicorns () {
+    alicornButton.render()
     alicornButton.controller.sacrificeAll(
-        alicornButton.model, false, () => { }
+        alicornButton.model,
+        false,
+        () => {}
     )
 }
 

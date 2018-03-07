@@ -15,9 +15,7 @@ function createShatterWidget () {
             button => button.opts.name === 'Combust TC'
         );
 
-    shatterButton.model = Object.assign({},shatterButton.opts);
-    shatterButton.model.options = Object.assign({},shatterButton.opts)
-    shatterButton.model.enabled = true;
+    shatterWidget.render()
     return shatterButton
 }
 
