@@ -2,11 +2,13 @@
 var shatterPerTick = false
 var shatterPadding = 0 // Additional seconds to delay shatter
 
-function getTimePer10Heat() {
+function getTimePer10Heat(furnaces = 0) {
     var heat = game.challenges.getChallenge('1000Years').researched,
-        heat = heat ? 5 : 10
+        heat = heat ? 5 : 10,
+        heatDown = game.time.getCFU('blastFurnace').effects.heatPerTick,
+        heatPerTick = heatDown * furnaces - 0.01
     return Math.ceil(Math.abs(heat / ((shatterPerTick ? 1 : 5) *
-                                    game.getEffect('heatPerTick')))) +
+                                    heatPerTick))) +
         (shatterPadding * (shatterPerTick ? 5 : 1))
 }
 
@@ -28,7 +30,8 @@ function shatterTCTime () {
     if (slowRedmoon && game.calendar.cycle == 5) {
         return
     }
-    if (counter % getTimePer10Heat() == 0) {
+    var furnaces = game.time.getCFU('blastFurnace').on
+    if (counter % getTimePer10Heat(furnaces) == 0) {
         shatterButton.controller.doShatterAmt(
             shatterButton.model, false, () => { }, 1
         )
@@ -66,7 +69,9 @@ function tradeLeviathans () {
     var leviRace = game.diplomacy.races.find(
         race => race.name === 'leviathans'
     )
-    game.diplomacy.tradeAll(leviRace)
+    if (leviRace.unlocked) {
+        game.diplomacy.tradeAll(leviRace)
+    }
 }
 
 // ** Timer

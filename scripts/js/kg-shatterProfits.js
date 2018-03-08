@@ -1,11 +1,13 @@
 var shatterPerTick = false
 var shatterPadding = 0 // Additional seconds to delay shatter
 
-function getTimePer10Heat() {
+function getTimePer10Heat(furnaces = 0) {
     var heat = game.challenges.getChallenge('1000Years').researched,
-        heat = heat ? 5 : 10
+        heat = heat ? 5 : 10,
+        heatDown = game.time.getCFU('blastFurnace').effects.heatPerTick,
+        heatPerTick = heatDown * furnaces - 0.01
     return Math.ceil(Math.abs(heat / ((shatterPerTick ? 1 : 5) *
-                                    game.getEffect('heatPerTick')))) +
+                                    heatPerTick))) +
         (shatterPadding * (shatterPerTick ? 5 : 1))
 }
 
@@ -22,18 +24,20 @@ function createShatterWidget () {
 var shatterButton = createShatterWidget()
 
 function getTCProfitability() {
-    var inTC = getTCPerShatter(),
+    var currFurnace = game.time.getCFU('blastFurnace').on
+    var inTC = getTCPerShatter(currFurnace),
         outTC = shatterButton.controller
             .getPrices(shatterButton.model)
             .find(x => x.name === 'timeCrystal').val
-    return inTC - outTC
+    var curr = inTC - outTC,
+        next = getTCPerShatter(currFurnace +1) - outTC
+    return "Current: "+curr+"\nNext Furnace: "+next
 }
 
-function getTCPerShatter() {
+function getTCPerShatter(furnace) {
     var rr = game.getEffect('shatterTCGain') *
         (1 + game.getEffect('rrRatio')),
-        delay = getTimePer10Heat()
-
+        delay = getTimePer10Heat(furnace)
     var unobt = getUnobtPerShatter(rr, delay),
         tcPerUnobt = getTCPerTrade() / 5000,
         ali = getAlicornPerShatter(rr, delay),
